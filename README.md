@@ -39,7 +39,7 @@
 `touch .ssh/authorized_keys`  
 `chmod 700 .ssh`  
 `chmod 600 .ssh/authorized_keys`  
-11. На **client** генерируем ssh-ключ и публичный ключ добавляем на сервер **backup** в файл authorized_keys:  
+11. На **client** генерируем ssh-ключ и добавляем публичный ключ на сервер **backup** в файл authorized_keys:  
 `ssh-keygen`  
 
 **Все дальнейшие действия будут проходить на client сервере.**  
