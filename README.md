@@ -110,6 +110,5 @@
 `systemctl start borg-backup.timer`  
 4. Проверяем работу таймера:  
 `systemctl list-timers --all`  
-![](https://github.com/remizovk/backup/blob/23ccf5f4be826bf060d3b16dd4c4a446ad2591f2/screenshots/05_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%82%D0%B0%D0%B9%D0%BC%D0%B5%D1%80%D0%B0.PNG)  
 5. проверяем список бэкапов:  
 `borg list borg@192.168.50.190:/var/backup/`  
