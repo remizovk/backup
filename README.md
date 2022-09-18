@@ -82,7 +82,7 @@
 >\# Создание бэкапа  
 >ExecStart=/bin/borg create \  
 >--stats \  
->\${REPO}::temp-{now:%%Y-%%m-%%d_%%H:%%M:%%S} ${BACKUP_TARGET}  
+> ${REPO}::temp-{now:%%Y-%%m-%%d_%%H:%%M:%%S} ${BACKUP_TARGET}  
 >
 >\# Проверка бэкапа  
 >ExecStart=/bin/borg check ${REPO}  
@@ -92,7 +92,7 @@
 >--keep-daily 90 \  
 >--keep-monthly 12 \  
 >--keep-yearly 1 \  
->\${REPO}  
+>${REPO}  
 
 `vi /etc/systemd/system/borg-backup.timer`  
 >[Unit]  
