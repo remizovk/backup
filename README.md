@@ -45,7 +45,7 @@
 **Все дальнейшие действия будут проходить на client сервере.**  
 
 12. Создадим папку /temp и сгенерируем в ней файл. С этой папки будем делать резервное копирование:  
-`mkdir /temp`
+`mkdir /temp`  
 `dd if=/dev/zero of=daygeek2.txt  bs=10M  count=1`  
 13. Инициализируем репозиторий на backup сервере (находясь на client):  
 `borg init --encryption=repokey borg@192.168.11.160:/var/backup/`  
