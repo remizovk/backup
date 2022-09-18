@@ -48,17 +48,17 @@
 `mkdir /temp`  
 `dd if=/dev/zero of=daygeek2.txt  bs=10M  count=1`  
 13. Инициализируем репозиторий на backup сервере (находясь на client):  
-`borg init --encryption=repokey borg@192.168.11.160:/var/backup/`  
+`borg init --encryption=repokey borg@192.168.50.190:/var/backup/`  
 13. Теперь создадим бэкап с папки /temp  
-`borg create --stats --list borg@192.168.11.160:/var/backup/::"temp-{now:%Y-%m-%d_%H:%M:%S}" /temp`  
+`borg create --stats --list borg@192.168.50.190:/var/backup/::"temp-{now:%Y-%m-%d_%H:%M:%S}" /temp`  
 14. Смотрим, что получилось  
-`borg list borg@192.168.11.160:/var/backup/`  
+`borg list borg@192.168.50.190:/var/backup/`  
 ![](https://github.com/remizovk/backup/blob/23ccf5f4be826bf060d3b16dd4c4a446ad2591f2/screenshots/02_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%B1%D1%8D%D0%BA%D0%B0%D0%BF%D0%B0.PNG)  
 15. Посмотрим содержимое бэкапа  
-`borg list borg@192.168.11.160:/var/backup/::etc-2021-10-15_23:00:15`  
+`borg list borg@192.168.50.190:/var/backup/::temp-2022-09-18_16:00:08`  
 ![](https://github.com/remizovk/backup/blob/23ccf5f4be826bf060d3b16dd4c4a446ad2591f2/screenshots/03_%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B8%D0%BC%20%D1%81%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%BC%D0%BE%D0%B5%20%D0%B0%D1%80%D1%85%D0%B8%D0%B2%D0%B0.PNG)  
 16. Достаем файл из бекапа (бэкап восстановится в текущей папке):  
-`borg extract borg@192.168.50.190:/var/backup/::temp-2021-10-15_23:00:15 temp/hostname`  
+`borg extract borg@192.168.50.190:/var/backup/::temp-2022-09-18_16:00:08 temp/hostname`  
 ![](https://github.com/remizovk/backup/blob/23ccf5f4be826bf060d3b16dd4c4a446ad2591f2/screenshots/04_%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%20%D0%B0%D1%80%D1%85%D0%B8%D0%B2.PNG)  
 
 ### Автоматизируем создание бэкапов с помощью systemd  
