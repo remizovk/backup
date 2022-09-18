@@ -58,7 +58,7 @@
 `borg list borg@192.168.11.160:/var/backup/::etc-2021-10-15_23:00:15`  
 ![](https://github.com/remizovk/backup/blob/23ccf5f4be826bf060d3b16dd4c4a446ad2591f2/screenshots/03_%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B8%D0%BC%20%D1%81%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%BC%D0%BE%D0%B5%20%D0%B0%D1%80%D1%85%D0%B8%D0%B2%D0%B0.PNG)  
 16. Достаем файл из бекапа (бэкап восстановится в текущей папке):  
-`borg extract borg@192.168.50.190:/var/backup/::temp-2021-10-15_23:00:15 temp/hostname  
+`borg extract borg@192.168.50.190:/var/backup/::temp-2021-10-15_23:00:15 temp/hostname`  
 ![](https://github.com/remizovk/backup/blob/23ccf5f4be826bf060d3b16dd4c4a446ad2591f2/screenshots/04_%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%B0%D0%B2%D0%BB%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%20%D0%B0%D1%80%D1%85%D0%B8%D0%B2.PNG)  
 
 ### Автоматизируем создание бэкапов с помощью systemd  
@@ -70,24 +70,24 @@
 >[Service]  
 >Type=oneshot  
 >
-># Парольная фраза  
+>\# Парольная фраза  
 >Environment="BORG_PASSPHRASE=Otus1234"  
 >
-># Репозиторий  
+>\# Репозиторий  
 >Environment=REPO=borg@192.168.50.190:/var/backup/  
 >
-># Что бэкапим  
+>\# Что бэкапим  
 >Environment=BACKUP_TARGET=/temp  
 >
-># Создание бэкапа  
+>\# Создание бэкапа  
 >ExecStart=/bin/borg create \  
 >--stats \  
 >${REPO}::temp-{now:%%Y-%%m-%%d_%%H:%%M:%%S} ${BACKUP_TARGET}  
 >
-># Проверка бэкапа  
+>\# Проверка бэкапа  
 >ExecStart=/bin/borg check ${REPO}  
 >
-># Очистка старых бэкапов  
+>\# Очистка старых бэкапов  
 >ExecStart=/bin/borg prune \  
 >--keep-daily 90 \  
 >--keep-monthly 12 \  
