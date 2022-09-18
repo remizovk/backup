@@ -82,7 +82,7 @@
 >\# Создание бэкапа  
 >ExecStart=/bin/borg create \  
 >--stats \  
-> ${REPO}::temp-{now:%%Y-%%m-%%d_%%H:%%M:%%S} ${BACKUP_TARGET}  
+> $\{REPO\}::temp-\{now:%%Y-%%m-%%d_%%H:%%M:%%S\} $\{BACKUP_TARGET\}  
 >
 >\# Проверка бэкапа  
 >ExecStart=/bin/borg check ${REPO}  
